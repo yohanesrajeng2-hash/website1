@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Tugas - Yohanes Alfianus Rajing</title>
+    <style>
+        /* --- MODERN CLEAN TECH THEME (WHITE & BLUE) --- */
+        :root {
+            --bg-main: #f4f7fa;         /* Light greyish blue background */
+            --bg-card: #ffffff;         /* Pure white for cards */
+            --bg-code: #0f172a;         /* Dark navy for contrast code block */
+            --accent-blue: #1e40af;     /* Deep corporate blue */
+            --accent-cyan: #3b82f6;     /* Bright electric blue */
+            --accent-glow: rgba(59, 130, 246, 0.15);
+            --accent-alert: #ef4444;    /* Subtle red for warnings */
+            --text-main: #1e293b;       /* Dark slate for high readability */
+            --text-muted: #64748b;      /* Muted slate for descriptions */
+            --border-light: #e2e8f0;    /* Light gray borders */
+            --border-active: #93c5fd;   /* Soft blue border focus */
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Fira Code', 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            /* Efek Grid halus profesional di background */
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-attachment: fixed;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            margin: 0;
+            color: var(--accent-blue);
+            letter-spacing: 0.5px;
+        }
+
+        /* --- STYLISH NAVBAR --- */
+        .top-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        .brand {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .brand span {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--accent-blue);
+            font-size: 11px;
+            font-weight: bold;
+            padding: 8px 20px;
+            border-radius: 6px;
+            border: 1px solid var(--accent-cyan);
+            background: rgba(59, 130, 246, 0.05);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-links a:hover {
+            box-shadow: 0 4px 15px var(--accent-glow);
+            background: var(--accent-blue);
+            color: #ffffff;
+            border-color: var(--accent-blue);
+        }
+
+        /* --- HERO HEADER SECTION --- */
+        .header-hero {
+            max-width: 950px;
+            margin: 50px auto 30px auto;
+            padding: 0 25px;
+            position: relative;
+        }
+
+        .terminal-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            background: var(--accent-blue);
+            padding: 6px 16px;
+            border-radius: 4px;
+            color: #ffffff;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(30, 64, 175, 0.2);
+        }
+
+        .terminal-tag::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #67e8f9;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #67e8f9;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        .header-hero h1 {
+            font-size: 38px;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--text-main);
+        }
+        
+        .header-hero h1 span {
+            color: var(--accent-blue);
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Grid Informasi Ringkas White-Blue */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            background: transparent;
+            padding: 0;
+        }
+        .info-item {
+            background: var(--bg-card);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            transition: all 0.3s;
+        }
+        .info-item:hover {
+            border-color: var(--border-active);
+            transform: translateY(-2px);
+        }
+        .info-item .label { display: block; font-size: 9px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 1px; }
+        .info-item .value { display: block; font-size: 13px; color: var(--text-main); font-weight: bold; }
+
+        /* --- MAIN CONTENT CONTAINER --- */
+        .main-content {
+            padding: 20px 25px 80px 25px;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        /* --- PROFIL PENGEMBANG (CLEAN CARD DESIGN) --- */
+        .profile-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-left: 4px solid var(--accent-blue);
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            position: relative;
+        }
+
+        .profile-section::after {
+            content: "ID_CORE_V.1.0";
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 9px;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .profile-section h2 {
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-main);
+        }
+
+        .profile-section h2 span { color: var(--accent-cyan); }
+
+        .profile-container {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .profile-frame {
+            flex-shrink: 0;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--border-light);
+            padding: 5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+        }
+
+        .profile-frame:hover {
+            border-color: var(--accent-cyan);
+            transform: scale(1.05);
+        }
+
+        .profile-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .profile-details { flex-grow: 1; }
+        .profile-grid-bio {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px 30px;
+        }
+        .bio-box {
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 8px;
+        }
+        .bio-box .bio-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; display: block; letter-spacing: 0.5px;}
+        .bio-box .bio-value { font-size: 14px; color: var(--text-main); font-weight: 600; }
+
+        /* --- DIREKTORI TUGAS --- */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+        }
+
+        .card h3 { 
+            font-size: 15px; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px; 
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 15px;
+            color: var(--text-main);
+        }
+        .card h3 span { color: var(--accent-blue); }
+
+        .list-item {
+            position: relative;
+            padding-left: 35px;
+            padding-bottom: 50px;
+            border-left: 2px solid var(--border-light);
+        }
+
+        .list-item:last-child { padding-bottom: 0; border-left: 2px solid transparent; }
+
+        /* Timeline Node Selector Modern */
+        .list-item::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2px solid var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .list-item:hover::before {
+            background: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+            transform: scale(1.2);
+        }
+
+        .item-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 16px;
+        }
+
+        .badge {
+            background-color: #f1f5f9;
+            color: var(--text-muted);
+            font-size: 11px;
+            padding: 4px 14px;
+            border-radius: 4px;
+            border: 1px solid var(--border-light);
+            letter-spacing: 0.5px;
+        }
+
+        .list-item:hover .badge {
+            color: var(--accent-blue);
+            border-color: var(--border-active);
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .item-text h4 { font-size: 18px; font-weight: 700; color: var(--text-main); transition: color 0.3s; }
+        .list-item:hover h4 { color: var(--accent-blue); }
+        
+        /* Box Deskripsi (Sleek Dark Terminal Codeblock untuk Kontras Baik) */
+        .soal-box {
+            background-color: var(--bg-code);
+            border-top: 3px solid var(--accent-blue);
+            padding: 22px;
+            margin: 20px 0;
+            border-radius: 6px;
+            font-size: 13.5px;
+            color: #cbd5e1;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .soal-box::before {
+            content: "● ● ●";
+            position: absolute;
+            top: -18px; left: 12px;
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+        }
+        
+        .soal-box strong { color: #ffffff; font-weight: 600; display: block; margin-bottom: 12px; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px;}
+        .soal-box ol, .soal-box ul { margin: 8px 0; padding-left: 20px; }
+        .soal-box li { margin-bottom: 6px; }
+
+        .info-note {
+            font-size: 11px;
+            color: #b45309; /* Dark Amber untuk kemudahan membaca di background putih */
+            background: #fffbef;
+            border: 1px solid #fde68a;
+            padding: 12px 18px;
+            border-radius: 4px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        /* Button Action Clean Light Style */
+        .tombol-buka {
+            font-size: 11px;
+            color: var(--accent-blue);
+            background-color: transparent;
+            border: 1px solid var(--accent-blue);
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 12px 24px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+        }
+
+        .tombol-buka:hover { 
+            background-color: var(--accent-blue);
+            color: #ffffff;
+            box-shadow: 0 4px 15px var(--accent-glow);
+            transform: translateX(5px);
+        }
+
+        /* --- RESPONSIVE BREAKPOINT --- */
+        @media (max-width: 768px) {
+            .top-navbar { padding: 15px 20px; }
+            .header-hero h1 { font-size: 28px; }
+            .info-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .profile-container { flex-direction: column; text-align: center; gap: 25px; }
+            .profile-grid-bio { grid-template-columns: 1fr; gap: 15px; text-align: left; }
+            .item-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .profile-frame { width: 110px; height: 110px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-navbar">
+        <div class="brand">// REG_<span>PORTFOLIO</span></div>
+        <div class="nav-links">
+            <a href="#">Repository Aktif</a>
+        </div>
+    </nav>
+
+    <header class="header-hero">
+        <div class="terminal-tag">Sistem Manajemen Berkas</div>
+        <h1>ALGORITMA & <span>PEMBROGRAMAN</span></h1>
+        <div class="subtitle">Arsip Digital Tugas Mandiri Mahasiswa Informatika</div>
+         
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="label">Mata Kuliah</span>
+                <span class="value">Algoritma & Pemrograman</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Bahasa</span>
+                <span class="value">Python / Core</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Metode</span>
+                <span class="value">Pseudocode & Flowchart</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Status</span>
+                <span class="value" style="color: var(--accent-cyan);">● Cloud Active</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+         
+        <section class="profile-section">
+            <h2><span>[01]</span> Profil Pengembang</h2>
+             
+            <div class="profile-container">
+                <div class="profile-frame">
+                    <img src="https://cdn.phototourl.com/free/2026-06-15-cba29c18-6549-4a31-b742-ebfbc30d3451.jpg" alt="Foto Yohanes Alfianus Rajing">
+                </div>
+
+                <div class="profile-details">
+                    <div class="profile-grid-bio">
+                        <div class="bio-box">
+                            <span class="bio-label">Nama Lengkap</span>
+                            <span class="bio-value">yohanes Alfianus Rajing</span>
+                        </div>
+                        <div class="bio-box">
+                            <span class="bio-label">NIM</span>
+                            <span class="bio-value">250403010045</span>
+                        </div>
+                        <div class="bio-box">
+                            <span class="bio-label">Program Studi</span>
+                            <span class="bio-value">Teknik Informatika (S1)</span>
+                        </div>
+                        <div class="bio-box">
+                            <span class="bio-label">Instansi</span>
+                            <span class="bio-value">Universitas PGRI Kanjuruhan Malang</span>
+                        </div>
+                        <div class="bio-box">
+                            <span class="bio-label">Kelas / Semester</span>
+                            <span class="bio-value">B / Semester 2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="card">
+            <h3><span>[02]</span> Direktori Berkas Tugas</h3>
+             
+            <div class="list-item">
+                <div class="item-text">
+                    <div class="item-header">
+                        <span class="badge">Task_01.log</span>
+                        <h4>Tugas 1: Analisis Kasus & Teori Dasar</h4>
+                    </div>
+                     
+                    <div class="soal-box">
+                        <strong>Soal Teori & Kasus:</strong>
+                        <ol>
+                            <li>Berikan contoh algoritma di kehidupan sehari-hari dengan studi kasus dibawah ini:
+                                <ul>
+                                    <li>a. Mengambil uang di ATM</li>
+                                    <li>b. Membuat kopi yang rasa manis dan pahitnya pas</li>
+                                    <li>c. Menghitung nilai y dari persamaan y = 3x + 6</li>
+                                </ul>
+                            </li>
+                            <li>Apa yang dimaksud dengan algoritma dan program?</li>
+                            <li>Suatu algoritma terdiri dari tiga struktur dasar, yaitu sekuensial, pemilihan, dan perulangan. Jelaskan masing-masing!</li>
+                            <li>Uraikan fungsi dari Bahasa pemrograman yg anda ketahui!</li>
+                        </ol>
+                        <strong>Instruksi Tambahan:</strong><br>
+                        Jawaban diberi NAMA_KELAS dan ditaruh di Drive masing-masing mahasiswa (Open Access) dan link dikirimkan di kolom komentar forum.
+                    </div>
+                     
+                    <span class="info-note">⚠️ Pengumpulan: Gunakan format NAMA_KELAS, simpan di Drive (Open Access). Verifikasi perangkat saat jam kuliah berlangsung.</span>
+                    <a href="https://drive.google.com/file/d/1DDSrSDvrOnVitm_xzazxrYLCKljj-HEz/view?usp=sharing target="_blank" class="tombol-buka">Execute / Fetch Task 1 ➔</a>
+                </div>
+            </div>
+             
+            <div class="list-item">
+                <div class="item-text">
+                    <div class="item-header">
+                        <span class="badge">Task_02.log</span>
+                        <h4>Tugas 2: Algoritma Sgekuensial Kompleks</h4>
+                    </div>
+                    <p style="font-size: 13.5px; color: var(--text-muted); margin: 10px 0; padding-left: 5px;">Menyusun struktur algoritma linear (sekuensial) dari studi kasus riil yang diimplementasikan ke bentuk Flowchart, Pseudocode deskriptif, serta Source Code pemrograman bebas.</p>
+                    <a href="https://drive.google.com/file/d/1Rx7bhOlhqLftVG_wF8lSKUwFzsDSSRnK/view?usp=sharing" target="_blank" class="tombol-buka">Execute / Fetch Task 2 ➔</a>
+                </div>
+            </div>
+
+            <div class="list-item">
+                <div class="item-text">
+                    <div class="item-header">
+                        <span class="badge">Task_03_UAS.log</span>
+                        <h4>Tugas 3: Implementasi Struktur Perulangan</h4>
+                    </div>
+                     
+                    <div class="soal-box">
+                        <strong>Instruksi Program:</strong><br>
+                        Buatlah Program yang terdiri dari :
+                        <ul>
+                            <li>- Perulangan Struktur For</li>
+                            <li>- Perulangan Struktur While</li>
+                            <li>- Perulangan Struktur Do-While</li>
+                            <li>- Perulangan Bersarang (Nested Loop)</li>
+                            <li>- Menggunakan bahasa pemrograman yang dikuasai. Dikumpulkan saat jadwal UAS.</li>
+                        </ul>
+                        <strong>Note :</strong> Nilai tambahan jika kode diletakkan di repositori GitHub (Online).
+                    </div>
+                     
+                    <span class="info-note">📌 Catatan UAS: Berkas dapat dikonsolidasikan dengan tugas sebelumnya. Poin bonus dialokasikan jika repositori ter-deploy di GitHub.</span>
+                    <a href="https://drive.google.com/file/d/1GNPWWL2iQ_6DzMLeaJhjlGvUCqiv7GGO/view?usp=sharing" target="_blank" class="tombol-buka">Execute / Fetch Task 3 (UAS) ➔</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
